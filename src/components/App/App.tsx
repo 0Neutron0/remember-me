@@ -1,8 +1,10 @@
+import { FC } from "react";
+import { Game } from "../Game/Game";
 import "./App.sass";
 
-const App = () => {
+const App: FC = () => {
     return(
-        <div className="test">Hi!</div>
+        <Game />
     )
 };
 
