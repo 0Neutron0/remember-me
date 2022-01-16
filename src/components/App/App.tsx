@@ -3,9 +3,9 @@ import { Routes, Route} from 'react-router';
 import { Layout } from "../Layout/Layout";
 import { Start } from "../../pages/Start";
 import { Light } from "../../pages/Light";
-import { NotFoundPage } from "../../pages/NotFoundPage";
 import { Difficult } from "../../pages/Difficult";
 import { Heavy } from "../../pages/Heavy";
+import { NotFoundPage } from "../../pages/NotFoundPage";
 import "./App.sass";
 
 const App: FC = () => {
