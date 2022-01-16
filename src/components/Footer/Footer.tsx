@@ -1,9 +1,10 @@
 import { FC } from "react";
+import "./Footer.sass";
 
 const Footer: FC = () => {
     return(
-        <footer>
-            Footer
+        <footer className="footer">
+            
         </footer>
     )
 }
