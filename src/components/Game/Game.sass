@@ -1,0 +1,82 @@
+%game__cards
+    position: absolute
+    width: 100%
+    height: 100%
+    left: 0
+    top: 0
+    display: flex
+    justify-content: center
+    align-items: center
+    transition: 1s
+    backface-visibility: hidden
+    border-radius: 10px
+
+.game
+    display: grid
+    grid-template-rows: 1fr 10fr
+    grid-gap: 1vw
+
+    .game__info
+        width: 100%
+
+        .game__counter
+            text-align: center
+            font-weight: bold
+            color: #ffeb3b
+            font-size: 20px
+            text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.363)
+
+        .game__score
+            text-align: center
+            color: #fff
+
+    .game__list
+        display: grid
+        grid-template-columns: repeat(4, 1fr)
+        grid-template-rows: repeat(3, 3fr)
+        grid-gap: 2vw
+        width: 70%
+        justify-self: center
+
+        .game__item
+            display: flex
+            border-radius: 10px
+            cursor: pointer
+
+            .game__card
+                position: relative
+                perspective: 1000px
+                width: 100%
+                height: auto
+
+                .game__card-front
+                    @extend %game__cards
+                    background-color: #ff3343
+                    &:hover
+                        box-shadow: 0px 5px 10px 2px #ff475455
+
+                    .game__icon-barcode
+                        width: 48px
+                        height: 48px
+                        background-image: url('../../images/icon/barcode.png')
+                        background-repeat: no-repeat
+
+                .game__card-back
+                    @extend %game__cards
+                    background-color: #fff
+                    transform: rotateY(180deg)
+                    &:hover
+                        box-shadow: 0px 5px 10px 2px #fff5
+                        
+                        
+                .game__card-front--rotate
+                    transform: rotateY(180deg)
+
+                .game__card-back--rotate
+                    transform: rotateY(360deg)
+
+
+
+
+
+        
