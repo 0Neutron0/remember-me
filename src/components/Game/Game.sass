@@ -11,6 +11,14 @@
     backface-visibility: hidden
     border-radius: 10px
 
+%game__icon
+    width: 48px
+    height: 48px
+    background-repeat: no-repeat
+
+.invisible
+    display: none
+
 .game
     display: grid
     grid-template-rows: 1fr 10fr
@@ -23,12 +31,18 @@
             text-align: center
             font-weight: bold
             color: #ffeb3b
-            font-size: 20px
+            font-size: 40px
             text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.363)
 
         .game__score
             text-align: center
-            color: #fff
+            color: #aaa
+            font-size: 18px
+
+            .game__score-info
+                font-weight: bold
+                color: #fff
+
 
     .game__list
         display: grid
@@ -56,10 +70,8 @@
                         box-shadow: 0px 5px 10px 2px #ff475455
 
                     .game__icon-barcode
-                        width: 48px
-                        height: 48px
-                        background-image: url('../../images/icon/barcode.png')
-                        background-repeat: no-repeat
+                        @extend %game__icon
+                        background-image: url('../../images/icons/barcode.png')
 
                 .game__card-back
                     @extend %game__cards
@@ -67,6 +79,10 @@
                     transform: rotateY(180deg)
                     &:hover
                         box-shadow: 0px 5px 10px 2px #fff5
+
+                    .game__icon-code
+                        @extend %game__icon
+                        background-image: url('../../images/icons/code.png')
                         
                         
                 .game__card-front--rotate

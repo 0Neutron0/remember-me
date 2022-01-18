@@ -1,9 +1,13 @@
 import { FC } from "react";
+import { ArrowBack } from "../components/ArrowBack/ArrowBack";
 import { Game } from "../components/Game/Game";
 
 const Difficult: FC = () => {
     return(
-        <Game/>
+        <>
+            <ArrowBack />
+            <Game />
+        </>
     )
 };
 
