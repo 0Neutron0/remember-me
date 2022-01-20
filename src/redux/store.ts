@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { rootReducer } from "./reducers/rootReducer";
 
-const setupStor = () => {
+export const setupStor = () => {
     return configureStore({
-        reducer: rootReducer
+        reducer: rootReducer,
+        devTools: true,
     })
 };
 
