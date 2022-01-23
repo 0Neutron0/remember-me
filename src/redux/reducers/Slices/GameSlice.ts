@@ -1,16 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IGame } from './../../../models/IGame';
 import { ICard } from '../../../models/ICard';
 
-interface Game {
-    cards: ICard[];
-    countSteps: number;
-    gameStatus: boolean;
-};
-
-const initialState: Game = {
+const initialState: IGame = {
     cards: [],
     countSteps: 0,
-    gameStatus: false
+    gameStatus: false,
+    previous: null,
+    notClick: false,
 };
 
 export const GameSlice = createSlice({
@@ -108,6 +105,37 @@ export const GameSlice = createSlice({
                 default:
                     state.cards = light;
             }
+        },
+
+        rotateAll(state, action: PayloadAction<boolean>){
+            state.cards.forEach(card => card.status = action.payload);
+        },
+
+        rotateCard (state, action: PayloadAction<ICard>){
+            state.cards.forEach(card => { 
+                if(card.id === action.payload.id){
+                    card.status = true;
+                    state.notClick = true;
+                }
+            });
+        },
+
+        checkCard(state, action: PayloadAction<ICard>){
+            state.notClick = false;
+            state.cards.forEach(card => { 
+                if(card.id === action.payload.id){
+                    if(state.previous){
+                        state.countSteps += 1;
+                        if(action.payload.type === state.previous.type){
+                            state.previous = null;
+                        }else{
+                            card.status = false;
+                        }
+                    }else{
+                        state.previous = action.payload;
+                    } 
+                }
+            });
         }
     }
 });
