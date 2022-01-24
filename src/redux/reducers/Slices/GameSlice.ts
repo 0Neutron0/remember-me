@@ -7,7 +7,9 @@ const initialState: IGame = {
     countSteps: 0,
     gameStatus: false,
     previous: null,
-    notClick: false,
+    notClick: true,
+    timer: 0,
+    renderScor: false,
 };
 
 export const GameSlice = createSlice({
@@ -15,6 +17,11 @@ export const GameSlice = createSlice({
     initialState,
     reducers: {
         inutialGame(state, action: PayloadAction<string>){
+
+            state.renderScor = false;
+            state.countSteps = 0;
+            state.gameStatus = false;
+            state.previous = null;
             
             type Mixser = (cards: ICard[]) => ICard[];
 
@@ -96,7 +103,6 @@ export const GameSlice = createSlice({
                     state.cards = light;
                     break;
                 case 'heavy':
-                    console.log('222');
                     state.cards = heavy;
                     break;
                 case 'difficult':
@@ -107,8 +113,14 @@ export const GameSlice = createSlice({
             }
         },
 
-        rotateAll(state, action: PayloadAction<boolean>){
-            state.cards.forEach(card => card.status = action.payload);
+        changeTimer(state, action: PayloadAction<number>){
+            state.timer = action.payload;
+        },
+
+        endTimer(state){
+            state.notClick = false;
+            state.renderScor = true;
+            state.cards.forEach(card => card.status = false);
         },
 
         rotateCard (state, action: PayloadAction<ICard>){
@@ -122,20 +134,33 @@ export const GameSlice = createSlice({
 
         checkCard(state, action: PayloadAction<ICard>){
             state.notClick = false;
-            state.cards.forEach(card => { 
+            let caunt: number = 0;
+            state.cards.forEach(card => {
+                if(card.status) caunt++;
                 if(card.id === action.payload.id){
                     if(state.previous){
-                        state.countSteps += 1;
+                        state.countSteps++;
                         if(action.payload.type === state.previous.type){
                             state.previous = null;
                         }else{
+                            state.cards.forEach(card => {
+                                if(card.id === state.previous?.id){
+                                    card.status = false;
+                                }
+                            });
                             card.status = false;
+                            state.previous = null;
                         }
                     }else{
                         state.previous = action.payload;
                     } 
                 }
             });
+
+            if(state.cards.length === caunt){
+                state.gameStatus = true;
+            };
+
         }
     }
 });

@@ -16,10 +16,26 @@
     height: 48px
     background-repeat: no-repeat
 
+%victory__btn
+    display: block
+    text-align: center
+    text-decoration: none
+    border-radius: 5px
+    padding: 10px
+    cursor: pointer
+    margin: 10px
+    color: #fff
+    font-weight: bold
+    text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.363)
+
 .invisible
     display: none
 
+.visible
+    display: flex
+
 .game
+    position: relative
     display: grid
     grid-template-rows: 1fr 10fr
     grid-gap: 1vw
@@ -177,11 +193,60 @@
                 .game__card-back--rotate
                     transform: rotateY(360deg)
 
+    .victory
+        position: absolute
+        justify-content: center
+        align-items: flex-start
+        width: 100%
+        height: 100%
+        z-index: 1003
+
+        .victory__info
+            width: 50%
+            background-color: #fff
+            border-radius: 10px
+            padding: 20px
+            text-align: center
+            border: 7px solid #09c0fa
+            box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2)
+
+            .victory__title
+                width: 100%
+                padding: 10px
+                font-size: 20px
+                font-weight: bold
+            
+            .victory__score
+                width: 100%
+                padding: 20px 10px
+            
+                .victory__score-info
+                    font-weight: bold
+            
+            .victory__nav
+                display: flex
+                width: 100%
+                flex-direction: column
+                justify-content: flex-start
+                align-items: center
+
+                .victory__choice
+                    @extend %victory__btn
+                    background-color: #09c0fa
+
+                .victory__restart
+                    @extend %victory__btn
+                    background-color: #ffb647
+
 
 @media ( max-width: 769px )
     .game
         .game__list
             width: 100%
+
+        .victory
+            .victory__info
+                width: 90%
     
 
 

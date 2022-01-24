@@ -6,4 +6,6 @@ export interface IGame {
     gameStatus: boolean;
     previous: ICard | null;
     notClick: boolean;
+    timer: number;
+    renderScor: boolean;
 };

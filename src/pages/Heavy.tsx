@@ -6,7 +6,7 @@ const Heavy: FC = () => {
     return(
         <>
             <ArrowBack />
-            <Game difficulty="heavy" />
+            <Game difficulty="heavy" time={4} />
         </>
     )
 };
